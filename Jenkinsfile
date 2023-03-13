@@ -1,24 +1,25 @@
 pipeline {
     agent { label 'dockeragent'}
-    stages ('vsc') {
+    stages('vsc') {
         steps {
-            git 'https://github.com/ravikiran2596/game-of-life.git'
+            git url: 'https://github.com/ravikiran2596/game-of-life.git'
+               branch: 'master'
         }
     }
-    stages ('build') {
+    stages('build') {
         steps {
-            build 'mvn package'
+            sh 'export PATH="/usr/lib/jvm/java-1.8.0-openjdk-amd64/bin:$PATH" && mvn package'
         }
     }
-    stages ('test') {
+    stages('artifactory') {
+        steps {
+            archiveArtifacts artifacts: '**/target/gameoflife.war'
+        }
+    }       
+    stages('test') {
         steps {
             junit '**/surefire-reports/TEST-*.xml'
 
-        }
-    }
-    stages ('artifactory') {
-        steps {
-            archiveArtifacts artifacts: '**/target/gameoflife.war'
         }
     }
 }
