@@ -14,7 +14,7 @@ pipeline {
                 jdk 'jdk_8'
             }
             steps {
-                sh 'mvn package'
+                sh "mvn ${params.maven_goal}"
             }
         }
         stage('archiveartifacts') {
