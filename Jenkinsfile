@@ -4,7 +4,7 @@ node ('dockeragent') {
             branch: 'master'
     }
     stage('build') {
-        sh 'export="/usr/lib/jvm/java-8-openjdk-amd64/bin:$PATH" && mvn package'
+        sh 'export="/usr/lib/jvm/java-1.8.0-openjdk-amd64/bin:$PATH" && mvn package'
     }
     stage(archiveArtifacts) {
         archiveArtifacts onlyIfSuccessful: true,
