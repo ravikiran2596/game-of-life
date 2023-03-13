@@ -1,6 +1,7 @@
 pipeline {
     agent { label 'dockeragent'}
     triggers { pollSCM('* * * * *') }
+    parameters { choice(name: 'maven_goal', choices: ['package', 'install', 'clean'], description: 'maven goal') }
     stages {
         stage('vcs') {
             steps {
