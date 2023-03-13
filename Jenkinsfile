@@ -1,5 +1,6 @@
 pipeline {
     agent { label 'dockeragent'}
+    triggers { pollSCM('H/15 * * * *') }
     stages {
         stage('vcs') {
             steps {
