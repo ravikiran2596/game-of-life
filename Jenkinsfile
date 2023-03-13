@@ -8,7 +8,7 @@ pipeline {
                     branch: 'master'
             }
         }
-        stage('build') {
+        stage('build goal') {
             tools {
                 jdk 'jdk_8'
             }
