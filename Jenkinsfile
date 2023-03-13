@@ -31,15 +31,15 @@ pipeline {
     }
     post {
         success {
-            mail subject: 'jenkins build of &${JOB_NAME} with id ${BUILD_ID} is success',
-                 body: 'use this URL ${BUILD_URL} for more info',
+            mail subject: "jenkins build of &${JOB_NAME} with id ${BUILD_ID} is success",
+                 body: "use this URL ${BUILD_URL} for more info",
                  to: 'foo@acme.org',
                  from: 'foo@abc.org'
         } 
         failure {
-            mail subject: 'jenkins build of &${JOB_NAME} with id ${BUILD_ID} is success',
-                 body: 'use this URL ${BUILD_URL} for more info',
-                 to: '${GIT_AUTHOR_EMAIL}',
+            mail subject: "jenkins build of &${JOB_NAME} with id ${BUILD_ID} is success",
+                 body: "use this URL ${BUILD_URL} for more info",
+                 to: "${GIT_AUTHOR_EMAIL}",
                  from: 'foo@abc.org'
         }
     }
