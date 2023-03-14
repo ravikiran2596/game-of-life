@@ -39,7 +39,7 @@ pipeline {
         failure {
             mail subject: "jenkins build of &${JOB_NAME} with id ${BUILD_ID} is success",
                  body: "use this URL ${BUILD_URL} for more info",
-                 to: "${GIT_AUTHOR_EMAIL}",
+                 to: "foo@acme.org",
                  from: 'foo@abc.org'
         }
     }
