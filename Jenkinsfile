@@ -16,6 +16,14 @@ pipeline {
                 sh "mvn package"
             }
         }
+        stage('sonar analysis') {
+            steps {
+                // performing sonarqube analysis with "withSonarQubeENV(<Name of Server configured in Jenkins>)"
+                withSonarQubeEnv('sonar_cloud') {
+                    sh 'mvn clean package sonar:sonar -Dsonar.organization=gameoflife1'
+                }
+            }
+        }
         stage('archiveartifacts') {
             steps {
                 archiveArtifacts onlyIfSuccessful: true,
